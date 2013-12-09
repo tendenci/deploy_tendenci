@@ -43,7 +43,7 @@ sed -i "/^local.*postgres/ s/peer/trust/" $CONF_DIR/pg_hba.conf
 #wget http://python-distribute.org/distribute_setup.py | python
 #rm distribute_setup.py
 
-apt-get install python-setuptools
+apt-get install -y python-setuptools
 easy_install pip
 pip install virtualenv
 
