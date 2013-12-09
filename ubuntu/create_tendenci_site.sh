@@ -18,6 +18,13 @@ SITE_NAME=`echo "$SITE_NAME" | sed -e 's/ //g' | tr [:upper:] [:lower:]`
 
 [ "$SITE_NAME" != "" ] || SITE_NAME=tendenci
 
+# check if site name already exists
+SITE_DIR=/var/www/$SITE_NAME
+if [ -d "$SITE_DIR" ]; then
+	echo "Site name '$SITE_NAME' already exists."
+	exit
+fi
+
 PORT=8000
 # prompt for port
 echo
@@ -39,7 +46,6 @@ DB_NAME=$SITE_NAME
 DB_USER=$SITE_NAME
 DB_PASS=$(mcookie)
 
-SITE_DIR=/var/www/$SITE_NAME
 TENDENCI_USERNAME=admin
 TENDENCI_PASSWD=admin
 USER_EMAIL=admin@example.com
