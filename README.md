@@ -2,7 +2,7 @@
 
 This repo, aiming to ease the deployment process, consists of a set of scripts for deploying Tendenci to Ubuntu/Debian linux servers.
 
-To deploy tendenci to your Ubuntu (12.04 or later) or Debian (7.1 or later) servers, follow the following steps.
+To deploy tendenci to your Ubuntu (12.04 or later) or Debian (7.1 or later) servers, follow the following steps (For Debian servers, make sure you have the `upstart` package installed before proceeding. `sudo dpkg --get-selections | grep upstart`).
 
 **Step 1: Download the scripts to your server:**
 
