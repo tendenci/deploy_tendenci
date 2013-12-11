@@ -111,14 +111,14 @@ python manage.py update_index
 #fi
 
 # set up gunicorn
-wget -O /etc/init/$SITE_NAME.conf https://gist.github.com/jennyq/246c76316536e283f008/raw/f9f3d9055343795ddae3e4fd813cf5d3bc7b32c9/tendenci.conf
+wget -O /etc/init/$SITE_NAME.conf https://gist.github.com/jennyq/246c76316536e283f008/raw/f9f3d9055343795ddae3e4fd813cf5d3bc7b32c9/tendenci.conf --no-check-certificate
 sed -i "s|/var/www/tendenci|/var/www/$SITE_NAME|" /etc/init/$SITE_NAME.conf
 sed -i "s|8000|$PORT|" /etc/init/$SITE_NAME.conf
 
 service $SITE_NAME restart
 
 # set up nginx conf for site
-wget -O /etc/nginx/sites-available/$SITE_NAME https://gist.github.com/jennyq/7742140/raw/b9320f9d13d5da3765812456f3f81aa83e48336c/nginx_tendenci
+wget -O /etc/nginx/sites-available/$SITE_NAME https://gist.github.com/jennyq/7742140/raw/b9320f9d13d5da3765812456f3f81aa83e48336c/nginx_tendenci --no-check-certificate
 sed -i "s|tendenci|$SITE_NAME|" /etc/nginx/sites-available/$SITE_NAME
 
 [ $PORT = 8000 ] || sed -i "s|8000|$PORT|" /etc/nginx/sites-available/$SITE_NAME

@@ -6,8 +6,8 @@ To deploy tendenci to your Ubuntu (12.04 or later) or Debian (7.1 or later) serv
 
 **Step 1: Download the scripts to your server:**
 
-	wget https://raw.github.com/tendenci/deploy_tendenci/master/ubuntu/server_setup.sh
-	wget https://raw.github.com/tendenci/deploy_tendenci/master/ubuntu/create_tendenci_site.sh
+	wget https://raw.github.com/tendenci/deploy_tendenci/master/ubuntu/server_setup.sh --no-check-certificate 
+	wget https://raw.github.com/tendenci/deploy_tendenci/master/ubuntu/create_tendenci_site.sh --no-check-certificate 
 
 **Step 2: Add the executable permission:**
 
@@ -17,5 +17,3 @@ To deploy tendenci to your Ubuntu (12.04 or later) or Debian (7.1 or later) serv
 
 	./server_setup.sh
 	./create_tendenci_site.sh
-
-
