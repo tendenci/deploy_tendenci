@@ -2,13 +2,6 @@
 
 echo "This script will set up the server - install dependencies for tendenci site."
 
-# check python version
-python_version=`python --version 2>&1 | awk '{print $2}' | cut -c1-3`
-if [ $python_version != "2.7" ]; then
-    echo "The python version $python_version is not supported. Please install Python 2.7!"
-    exit
-fi
-
 # must be root
 u=`whoami`
 if [ $u != "root" ]; then
@@ -38,6 +31,13 @@ apt-get install -y nginx
 PGSQL_VER=$(ls /etc/postgresql/)
 CONF_DIR=/etc/postgresql/${PGSQL_VER}/main
 sed -i "/^local.*postgres/ s/peer/trust/" $CONF_DIR/pg_hba.conf 
+
+# check python version
+python_version=`python --version 2>&1 | awk '{print $2}' | cut -c1-3`
+if [ $python_version != "2.7" ]; then
+    echo "The python version $python_version is not supported. Please install Python 2.7!"
+    exit
+fi
 
 # install pip
 #wget http://python-distribute.org/distribute_setup.py | python
