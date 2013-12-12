@@ -68,9 +68,9 @@ pip install gevent==0.13.8
 service postgresql restart
 
 # create tendenci database
-psql -U postgres -c "CREATE USER $DB_USER WITH PASSWORD '$DB_PASS';"
-psql -U postgres -c "CREATE DATABASE $DB_NAME WITH OWNER $DB_USER;"
-psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;"
+sudo -u postgres psql -c "CREATE USER $DB_USER WITH PASSWORD '$DB_PASS';"
+sudo -u postgres psql -c "CREATE DATABASE $DB_NAME WITH OWNER $DB_USER;"
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;"
 
 # update DATABASE_URL in .env
 sed -i "s|DATABASE_URL\s*=\(.*\)|DATABASE_URL='postgres://$DB_USER:$DB_PASS@localhost/$DB_NAME'|" .env

@@ -28,10 +28,6 @@ apt-get install -y nginx
 [ -f /usr/lib/libjpeg.so ] || ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so /usr/lib/
 [ -f /usr/lib/libfreetype.so ] || ln -s /usr/lib/x86_64-linux-gnu/libfreetype.so /usr/lib/
 
-PGSQL_VER=$(ls /etc/postgresql/)
-CONF_DIR=/etc/postgresql/${PGSQL_VER}/main
-sed -i "/^local.*postgres/ s/peer/trust/" $CONF_DIR/pg_hba.conf 
-
 # check python version
 python_version=`python --version 2>&1 | awk '{print $2}' | cut -c1-3`
 if [ $python_version != "2.7" ]; then
