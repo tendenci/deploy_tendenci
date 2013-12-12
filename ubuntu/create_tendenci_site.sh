@@ -11,7 +11,7 @@ fi
 # prompt for site name
 echo "This script will create a tendenci site for you."
 echo
-read -p "Site name (leave blank to use 'tendenci'): " SITE_NAME
+read -p "Site name (used for directory name and db name, default to 'tendenci'): " SITE_NAME
 
 # trim white spaces and convert to lowercase
 SITE_NAME=`echo "$SITE_NAME" | sed -e 's/ //g' | tr [:upper:] [:lower:]`
@@ -28,7 +28,7 @@ fi
 PORT=8000
 # prompt for port
 echo
-read -p "Port - 4-digits and starting with 8 (leave blank to use '8000'): " MY_PORT
+read -p "Port for internal server - 4-digits and starting with 8 (default to '8000'): " MY_PORT
 re="^8[0-9]{3}$"
 #[[ "$PORT" =~ $re ]] || PORT=8000
 if echo "$MY_PORT" | egrep -q '^8[0-9]{3}$'; then
@@ -38,7 +38,7 @@ echo $PORT
 
 # prompt for nginx server_name
 echo
-read -p "Server name (leave blank to use 'localhost'): " SERVER_NAME
+read -p "Domain name (default to 'localhost'): " SERVER_NAME
 SERVER_NAME=`echo "$SERVER_NAME" | sed -e 's/ //g'`
 [ "$SERVER_NAME" != '' ] || SERVER_NAME='localhost'
 
