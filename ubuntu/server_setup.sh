@@ -24,16 +24,22 @@ apt-get install -y libfreetype6-dev
 apt-get install -y postgresql
 apt-get install -y nginx
 
-[ -f /usr/lib/libz.so ] || ln -s /usr/lib/x86_64-linux-gnu/libz.so /usr/lib/
-[ -f /usr/lib/libjpeg.so ] || ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so /usr/lib/
-[ -f /usr/lib/libfreetype.so ] || ln -s /usr/lib/x86_64-linux-gnu/libfreetype.so /usr/lib/
-
 # check python version
 python_version=`python --version 2>&1 | awk '{print $2}' | cut -c1-3`
 if [ $python_version != "2.7" ]; then
     echo "The python version $python_version is not supported. Please install Python 2.7!"
     exit
 fi
+
+# add symlinks for jpeg and freetype libs
+if [ `python -c 'import struct; print struct.calcsize("P")*8'` = 64 ]; then
+    mbit='x86_64-linux-gnu'
+else
+    mbit='i386-linux-gnu'
+fi
+[ -f /usr/lib/libz.so ] || ln -s /usr/lib/$mbit/libz.so /usr/lib/
+[ -f /usr/lib/libjpeg.so ] || ln -s /usr/lib/$mbit/libjpeg.so /usr/lib/
+[ -f /usr/lib/libfreetype.so ] || ln -s /usr/lib/$mbit/libfreetype.so /usr/lib/
 
 # install pip
 #wget http://python-distribute.org/distribute_setup.py | python
