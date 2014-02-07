@@ -57,6 +57,8 @@ cd $SITE_DIR
 virtualenv venv --distribute
 . venv/bin/activate
 
+# django-tagging cannot be installed as a dependency
+pip install django-tagging>=0.3.1
 pip install tendenci
 
 create-tendenci-project
